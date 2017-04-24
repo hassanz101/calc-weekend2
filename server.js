@@ -18,7 +18,12 @@ res.sendFile(path.resolve('public/views/index.html'));
 
 //calculator route
 app.post('/calculator', function(req, res){
+  //req.body.type will refer to the number type of index.html
   switch(req.body.type){
+    //req.body.x (x * y)=
+    //req.body.x (x / y)=
+    //req.body.x (x + y)=
+    //req.body.x (x - y)=
     case '*':
       var answer = Number(req.body.x) * Number(req.body.y);
       break;

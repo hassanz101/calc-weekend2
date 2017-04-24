@@ -11,8 +11,8 @@ function docReady() {
   console.log('doc ready');
   //event listeners
   $('.calc-data').on('click', numberCalc ); //the numbers
-  $('.operations').on('click', operationCalc); //operations
-  $('#clearButton').on('click', clearFunc ); //clearbutton
+  $('.operations').on('click', operationCalc); //operations + - * /
+  $('#clearButton').on('click', clearFunc ); //clear button
   $('#equalButton').on('click', equalFunc); //equal button
 
 //data-val on index
@@ -30,18 +30,18 @@ function operationCalc(){
   objectToSend.x = $('#inputNumber').val();
   objectToSend.type = type;
   $('#inputNumber').val(' ');
-//  console.log('in operationCalc on click:', type);
 }
 //clear func will hold input string of number
 function clearFunc(){
-  $('#inputNumber').val('');
+  $('#inputNumber').val(' ');
   console.log('in clearFunc on click:');
 
 }
-//calculate equals
+//calculate the equals
 function equalFunc(){
   objectToSend.y = $('#inputNumber').val();
   console.log('equals', objectToSend);
+  //start ajax call
   $.ajax({
     type: 'POST',
     url: '/calculator',
@@ -50,6 +50,7 @@ function equalFunc(){
       console.log('server:', response);
       //display the number answer on the DOM
       $('#inputNumber').val(response.number);
+      // $('#inputNumber').empty();
     }
   }); //end ajax call
 }
